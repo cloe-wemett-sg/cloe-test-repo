@@ -1,0 +1,19 @@
+Hello, hi, what's up?
+
+This is a test txt file to play around with. 
+
+Feel free to change the contents to ANYTHING :)
+
+     _
+   _| |
+ _| | |
+| | | |
+| | | | __
+| | | |/  \
+|       /\ \
+|      /  \/
+|      \  /\
+|       \/ /
+ \        /
+  |     /
+  |    |
