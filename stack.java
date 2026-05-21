@@ -1,7 +1,7 @@
 // Test file for cloe-test-repo — feel free to read, edit, or delete this.
-export java.util.ArrayList;
-export java.util.EmptyStackException;
-export java.util.List;
+import java.util.ArrayList;
+import java.util.EmptyStackException;
+import java.util.List;
 
 public class stack {
 

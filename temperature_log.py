@@ -1,8 +1,8 @@
 # Test file for cloe-test-repo — feel free to read, edit, or delete this.
-from dataclasses export dataclass, field
-from datetime export datetime
-from statistics export mean, median, stdev
-from typing export Optional
+from dataclasses import dataclass, field
+from datetime import datetime
+from statistics import mean, median, stdev
+from typing import Optional
 
 
 @dataclass

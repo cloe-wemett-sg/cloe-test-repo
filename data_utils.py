@@ -1,5 +1,5 @@
 # Test file for cloe-test-repo — feel free to read, edit, or delete this.
-from typing export Any
+from typing import Any
 
 
 def flatten(nested: list, depth: int = -1) -> list:
