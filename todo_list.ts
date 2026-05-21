@@ -1,3 +1,4 @@
+// Test file for cloe-test-repo — feel free to read, edit, or delete this.
 type Priority = "low" | "medium" | "high";
 
 interface Todo {

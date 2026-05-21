@@ -1,3 +1,4 @@
+# Test file for cloe-test-repo — feel free to read, edit, or delete this.
 class Shape
   def area
     raise NotImplementedError, "Subclass must implement area"

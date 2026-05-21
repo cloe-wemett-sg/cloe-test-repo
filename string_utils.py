@@ -1,3 +1,4 @@
+# Test file for cloe-test-repo — feel free to read, edit, or delete this.
 def palindrome(s: str) -> bool:
     cleaned = "".join(c.lower() for c in s if c.isalnum())
     return cleaned == cleaned[::-1]

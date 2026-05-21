@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Test file for cloe-test-repo — feel free to read, edit, or delete this.
 
 usage() {
   echo "Usage: $0 [OPTIONS] <file>"
