@@ -1,0 +1,84 @@
+name: ci-pipeline
+version: "2.1"
+trigger:
+  branches: [main, develop]
+  on: [push, pull_request]
+
+env:
+  NODE_VERSION: "20"
+  GO_VERSION: "1.22"
+  PYTHON_VERSION: "3.12"
+
+stages:
+  - name: lint
+    parallel: true
+    jobs:
+      - name: lint-python
+        image: python:3.12-slim
+        steps:
+          - run: pip install ruff
+          - run: ruff check .
+
+      - name: lint-go
+        image: golang:1.22
+        steps:
+          - run: go vet ./...
+
+      - name: lint-js
+        image: node:20-alpine
+        steps:
+          - run: npm ci
+          - run: npm run lint
+
+  - name: test
+    needs: [lint]
+    parallel: true
+    jobs:
+      - name: test-unit
+        image: python:3.12-slim
+        steps:
+          - run: pip install pytest pytest-cov
+          - run: pytest tests/unit --cov=src --cov-report=xml
+        artifacts:
+          - coverage.xml
+
+      - name: test-integration
+        image: python:3.12-slim
+        services:
+          - name: postgres
+            image: postgres:16
+            env:
+              POSTGRES_DB: testdb
+              POSTGRES_USER: testuser
+              POSTGRES_PASSWORD: testpass
+        steps:
+          - run: pip install pytest psycopg2
+          - run: pytest tests/integration
+
+  - name: build
+    needs: [test]
+    jobs:
+      - name: build-docker
+        steps:
+          - run: docker build -t myapp:$CI_COMMIT_SHA .
+          - run: docker tag myapp:$CI_COMMIT_SHA myapp:latest
+        only:
+          branches: [main]
+
+  - name: deploy
+    needs: [build]
+    environment: staging
+    jobs:
+      - name: deploy-staging
+        steps:
+          - run: kubectl set image deployment/myapp app=myapp:$CI_COMMIT_SHA
+          - run: kubectl rollout status deployment/myapp --timeout=120s
+        only:
+          branches: [main]
+
+notifications:
+  on_failure:
+    slack: "#alerts"
+    email: [team@example.com]
+  on_success:
+    slack: "#deploys"

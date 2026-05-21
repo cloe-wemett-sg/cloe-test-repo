@@ -1,0 +1,95 @@
+services:
+  api:
+    description: Main REST API server
+    language: go
+    port: 8080
+    healthcheck: /health
+    dependencies:
+      - postgres
+      - redis
+    env:
+      LOG_LEVEL: info
+      MAX_CONNECTIONS: 100
+      REQUEST_TIMEOUT_MS: 5000
+    scaling:
+      min_replicas: 2
+      max_replicas: 10
+      cpu_threshold_pct: 70
+
+  worker:
+    description: Background job processor
+    language: python
+    concurrency: 4
+    queue: default
+    dependencies:
+      - postgres
+      - rabbitmq
+    env:
+      LOG_LEVEL: info
+      JOB_TIMEOUT_S: 300
+      RETRY_LIMIT: 3
+    scaling:
+      min_replicas: 1
+      max_replicas: 5
+
+  frontend:
+    description: React web application
+    language: typescript
+    port: 3000
+    dependencies:
+      - api
+    env:
+      NODE_ENV: production
+    build:
+      command: npm run build
+      output_dir: dist
+
+infrastructure:
+  postgres:
+    image: postgres:16
+    version: "16.2"
+    port: 5432
+    storage_gb: 100
+    backup:
+      enabled: true
+      schedule: "0 2 * * *"
+      retention_days: 30
+
+  redis:
+    image: redis:7
+    port: 6379
+    max_memory_mb: 512
+    eviction_policy: allkeys-lru
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    port: 5672
+    management_port: 15672
+    queues:
+      - name: default
+        durable: true
+        max_length: 10000
+      - name: priority
+        durable: true
+        max_priority: 10
+
+monitoring:
+  metrics:
+    provider: prometheus
+    scrape_interval_s: 15
+    retention_days: 15
+  logs:
+    provider: loki
+    retention_days: 30
+  tracing:
+    provider: jaeger
+    sample_rate: 0.1
+  alerts:
+    - name: high_error_rate
+      condition: error_rate > 0.05
+      for: 5m
+      severity: critical
+    - name: high_latency
+      condition: p99_latency_ms > 1000
+      for: 10m
+      severity: warning

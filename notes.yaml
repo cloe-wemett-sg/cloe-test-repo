@@ -1,0 +1,75 @@
+project: test-repo
+created: 2026-01-15
+owner: cloe
+
+notes:
+  - id: 1
+    title: Setup complete
+    body: Initialized repo and uploaded first test files.
+    tags: [setup, infra]
+    created: 2026-01-15
+    resolved: true
+
+  - id: 2
+    title: Add more language samples
+    body: Need .js, .ts, .go, .java, .rb, .c, .sh files for comprehensive tool testing.
+    tags: [testing, files]
+    created: 2026-01-20
+    resolved: false
+
+  - id: 3
+    title: Verify read/write operations
+    body: Test that all tools can open, read, and edit each file type without errors.
+    tags: [testing, validation]
+    created: 2026-01-22
+    resolved: false
+
+  - id: 4
+    title: Performance baseline
+    body: Record baseline timing for file operations before optimizations.
+    tags: [performance]
+    created: 2026-02-01
+    resolved: false
+
+file_types_present:
+  - extension: .py
+    count: 2
+    sample: helloWorld.py
+  - extension: .txt
+    count: 1
+    sample: random.txt
+  - extension: .js
+    count: 1
+    sample: calculator.js
+  - extension: .ts
+    count: 1
+    sample: todo_list.ts
+  - extension: .go
+    count: 1
+    sample: inventory.go
+  - extension: .rb
+    count: 1
+    sample: shapes.rb
+  - extension: .java
+    count: 1
+    sample: stack.java
+  - extension: .c
+    count: 1
+    sample: linked_list.c
+  - extension: .sh
+    count: 1
+    sample: word_counter.sh
+  - extension: .css
+    count: 1
+    sample: styles.css
+  - extension: .json
+    count: 1
+    sample: config.json
+  - extension: .yaml
+    count: 1
+    sample: notes.yaml
+
+settings:
+  auto_cleanup: false
+  backup_before_edit: true
+  max_file_size_kb: 500

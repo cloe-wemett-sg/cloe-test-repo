@@ -1,0 +1,46 @@
+{
+  "app": {
+    "name": "TestApp",
+    "version": "1.4.2",
+    "environment": "development",
+    "debug": true,
+    "port": 3000
+  },
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "name": "testdb",
+    "pool": {
+      "min": 2,
+      "max": 10,
+      "idleTimeoutMs": 30000
+    }
+  },
+  "cache": {
+    "provider": "redis",
+    "host": "localhost",
+    "port": 6379,
+    "ttlSeconds": 300
+  },
+  "auth": {
+    "tokenExpiryMinutes": 60,
+    "refreshTokenExpiryDays": 30,
+    "bcryptRounds": 12
+  },
+  "features": {
+    "darkMode": true,
+    "betaFeatures": false,
+    "analytics": true,
+    "notifications": {
+      "email": true,
+      "sms": false,
+      "push": true
+    }
+  },
+  "logging": {
+    "level": "info",
+    "format": "json",
+    "destinations": ["console", "file"],
+    "filePath": "./logs/app.log"
+  }
+}
