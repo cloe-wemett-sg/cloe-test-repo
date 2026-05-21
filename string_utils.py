@@ -73,3 +73,4 @@ if __name__ == "__main__":
     print(title_case("the quick brown fox and the lazy dog"))
     print(snake_to_camel("my_variable_name"))
     print(camel_to_snake("myVariableName"))
+# End of test file.

@@ -63,3 +63,4 @@ $SHOW_WORDS  && echo "Words:        $(count_words "$FILE")"
 $SHOW_CHARS  && echo "Characters:   $(count_chars "$FILE")"
 $SHOW_UNIQUE && echo "Unique words: $(count_unique "$FILE")"
 $SHOW_TOP    && top_words "$FILE"
+# End of test file.

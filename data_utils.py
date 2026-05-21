@@ -76,3 +76,4 @@ if __name__ == "__main__":
     base = {"a": 1, "b": {"x": 10, "y": 20}}
     override = {"b": {"y": 99, "z": 30}, "c": 3}
     print(deep_merge(base, override))
+# End of test file.

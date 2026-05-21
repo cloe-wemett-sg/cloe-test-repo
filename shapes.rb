@@ -77,3 +77,4 @@ shapes = [
 ]
 
 shapes.each { |s| puts s }
+# End of test file.

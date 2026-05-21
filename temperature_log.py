@@ -80,3 +80,4 @@ if __name__ == "__main__":
     print("Anomalies:")
     for r in log.anomalies():
         print(f"  {r.celsius}°C  ({r.fahrenheit:.1f}°F)")
+# End of test file.

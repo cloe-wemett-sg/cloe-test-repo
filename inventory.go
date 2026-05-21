@@ -93,3 +93,4 @@ func main() {
 		fmt.Printf("  - %s: %d units\n", item.Name, item.Quantity)
 	}
 }
+// End of test file.

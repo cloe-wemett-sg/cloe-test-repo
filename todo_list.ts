@@ -72,3 +72,4 @@ list.complete(3);
 
 console.log(list.summary());
 console.log("Pending high priority:", list.getByPriority("high").filter((t) => !t.completed));
+// End of test file.

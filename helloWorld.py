@@ -3,3 +3,4 @@ def hi():
 	print("Hello world!")
 
 hi()
+# End of test file.

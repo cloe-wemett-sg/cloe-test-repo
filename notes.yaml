@@ -74,3 +74,4 @@ settings:
   auto_cleanup: false
   backup_before_edit: true
   max_file_size_kb: 500
+# End of test file.

@@ -83,3 +83,4 @@ notifications:
     email: [team@example.com]
   on_success:
     slack: "#deploys"
+# End of test file.

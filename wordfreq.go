@@ -89,3 +89,4 @@ func main() {
 		fmt.Printf("  %2d. %-20s %d\n", i+1, wf.Word, wf.Count)
 	}
 }
+// End of test file.

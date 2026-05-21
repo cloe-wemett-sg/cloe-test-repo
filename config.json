@@ -42,6 +42,7 @@
     "level": "info",
     "format": "json",
     "destinations": ["console", "file"],
-    "filePath": "./logs/app.log"
+    "filePath": "./logs/app.log",
+    "_end_comment": "End of test file."
   }
 }
